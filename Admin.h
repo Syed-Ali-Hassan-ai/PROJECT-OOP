@@ -155,6 +155,9 @@ public:
             case 4:
                 cout << "Return to main menu!\n";
                 break;
+            case 5:
+                cout << "Return to main menu!\n";
+                break;
             default:
                 cout << "Invalid choice!\n";
                 break;
