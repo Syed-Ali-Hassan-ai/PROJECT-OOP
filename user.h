@@ -11,9 +11,9 @@ class Checker   // Make checker a friend class to access protected members
     void user()
     {
         int choice = 0;
-        while (choice != 4)
+        while (choice != 3)
         {
-            cout << "Address Book Menu:\n";
+            cout << "Entry Exit menu Menu:\n";
             cout << "1. Verify Entry\n";
             cout << "2. Exit GIKI\n";
             cout << "3. Quit\n";

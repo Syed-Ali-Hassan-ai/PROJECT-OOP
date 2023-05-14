@@ -33,8 +33,7 @@ private:
         cin >> d;
         cout << "Enter your CNIC number (without dashes)";
         cin >> c;
-        time_t now = time(0);
-        t = ctime(& now);
+        
         Student new_User(n, g, a, p, d, c, t);
         users.push_back(new_User);
         cout << "User added successfully!\n";
@@ -70,10 +69,34 @@ private:
             cout << "Phone number: " << users[i].phone_number << endl;
             cout << "DOB: " << users[i].dob << endl;
             cout << "CNIC: " << users[i].cnic << endl;
-            cout << "Entry Time " << users[i].tym << endl;
+            
         
             cout << endl;
         }
+    }
+    void Search_User_nic()
+    {
+        string nic;
+        cout<<"Enter The CNIC you want to Search ";cin>>nic;
+        for (int i = 0; i < users.size(); i++)
+        {
+           
+            if (nic == users[i].cnic)
+            {
+               cout<<"User Name == "<<users[i].name<<endl;
+               cout<<"Phone  "<<users[i].phone_number<<endl;
+               cout<<"Time Entered {entries }"<<users[i].tym<<endl;
+
+            }
+            else if (nic != users[i].cnic)
+            {
+                cout<<"User CNIC invalid \n";
+            }
+            
+            
+            
+        }
+        
     }
 
 public:
@@ -94,6 +117,7 @@ public:
             outFile << users[i].phone_number << endl;
             outFile << users[i].dob << endl;
             outFile << users[i].tym << endl;
+            outFile << users[i].cnic<<endl;
         }
 
         outFile.close();
@@ -138,13 +162,14 @@ public:
         //system("cls");
 
         int choice = 0;
-        while (choice != 4)
+        while (choice != 5)
         {
             cout << "Address Book Menu:\n";
             cout << "1. Add user\n";
             cout << "2. Remove user\n";
             cout << "3. Display all users\n";
-            cout << "4. Quit\n";
+            cout << "4. Search User With Cnic\n";
+            cout << "5. Quit\n";
             cout << "Enter your choice: ";
             cin >> choice;
 
@@ -160,7 +185,7 @@ public:
                 display_users();
                 break;
             case 4:
-                cout << "Return to main menu!\n";
+                Search_User_nic();
                 break;
             case 5:
                 cout << "Return to main menu!\n";

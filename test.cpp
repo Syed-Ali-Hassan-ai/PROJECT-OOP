@@ -6,4 +6,4 @@ int main() {
    char *date = ctime(& now);
 
    cout << "The local date and time : " << date << endl;
-}
+}   

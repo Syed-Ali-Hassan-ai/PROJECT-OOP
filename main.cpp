@@ -29,7 +29,7 @@ void homesceen()
             admin.admin();
             break;
         case 2:
-            visitor.check();
+            visitor.user();
             break;
         case 3:
             cout << "Goodbye!\n";
