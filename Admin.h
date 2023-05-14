@@ -1,6 +1,7 @@
 #ifndef Adminh
 #define Adminh
 #include <stdlib.h>
+#include <ctime>
 #include <iostream>
 #include <vector>
 #include "Student.h"
@@ -17,7 +18,7 @@ private:
 
     void add_user()
     {
-        string n, a, p, d, c;
+        string n, a, p, d, c, t;
         char g;
         cout << "Enter first name: ";
         cin >> n;
@@ -32,7 +33,9 @@ private:
         cin >> d;
         cout << "Enter your CNIC number (without dashes)";
         cin >> c;
-        Student new_User(n, g, a, p, d, c);
+        time_t now = time(0);
+        t = ctime(& now);
+        Student new_User(n, g, a, p, d, c, t);
         users.push_back(new_User);
         cout << "User added successfully!\n";
     }
@@ -67,7 +70,8 @@ private:
             cout << "Phone number: " << users[i].phone_number << endl;
             cout << "DOB: " << users[i].dob << endl;
             cout << "CNIC: " << users[i].cnic << endl;
-            
+            cout << "Entry Time " << users[i].tym << endl;
+        
             cout << endl;
         }
     }
@@ -89,6 +93,7 @@ public:
             outFile << users[i].address << endl;
             outFile << users[i].phone_number << endl;
             outFile << users[i].dob << endl;
+            outFile << users[i].tym << endl;
         }
 
         outFile.close();
@@ -102,7 +107,7 @@ public:
             return;
         }
 
-        string name, gender, address, phone_number, dob, cnic;
+        string name, gender, address, phone_number, dob, cnic, tym;
         while (getline(inFile, name))
         {
             getline(inFile, gender);
@@ -110,8 +115,10 @@ public:
             getline(inFile, phone_number);
             getline(inFile, dob);
             getline(inFile, cnic);
+            getline(inFile, tym);
+            
 
-            Student new_User(name, gender[0], address, phone_number, dob, cnic);
+            Student new_User(name, gender[0], address, phone_number, dob, cnic, tym);
             users.push_back(new_User);
         }
 
@@ -128,7 +135,7 @@ public:
         save_users(filename);
         load_users(filename);
         
-        system("cls");
+        //system("cls");
 
         int choice = 0;
         while (choice != 4)

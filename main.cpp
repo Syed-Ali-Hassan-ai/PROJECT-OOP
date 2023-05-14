@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include "Admin.h"
 #include "user.h"
+#include <ctime>
+
 using namespace std;
 void homesceen()
 {
@@ -10,8 +12,8 @@ void homesceen()
     Checker visitor;
     do
     {
-        /* code */
-        system("cls");
+        
+        //system("cls");
         cout<<"\t\t__________________Welcome To the Gating System GIKI__________________"<<endl;
         cout<<"\t\t1. Admin "<<endl;
         cout<<"\t\t2. User "<<endl;

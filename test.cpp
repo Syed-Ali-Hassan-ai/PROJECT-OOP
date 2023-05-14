@@ -1,11 +1,9 @@
-// testing
-// testing
-// testing
-// testing
 #include <iostream>
-
+#include <ctime>
 using namespace std;
-int main()
-{
-    cout<<"Hello World ";
+int main() {
+   time_t now = time(0);
+   char *date = ctime(& now);
+
+   cout << "The local date and time : " << date << endl;
 }
