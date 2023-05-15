@@ -2,14 +2,22 @@
 #include <string>
 #include <ctime>
 #include <vector>
+#include <fstream>
 #include "Student.h"
 #include "Admin.h"
+#include "Time.h"
 
-class Checker   // Make checker a friend class to access protected members
+vector<Entry> time1;
+vector<Exit> time2;
+
+class Checker : public User// Make checker a friend class to access protected members
 {
-    public:
+private:
+User user1;
+public:
     void user()
     {
+        system("cls");
         int choice = 0;
         while (choice != 3)
         {
@@ -29,7 +37,9 @@ class Checker   // Make checker a friend class to access protected members
                 Exit();
                 break;
             case 3:
-            cout << "Return to Main Menu";
+                //user1.save_users("test.txt");
+                cout << "Return to Main Menu";
+
                 break;
 
             default:
@@ -38,54 +48,67 @@ class Checker   // Make checker a friend class to access protected members
             }
         }
     }
+
+    int temp =0;
     void check()
     {
-        string nic; 
-        cout << "Enter your CNIC: "; 
+        
+        string nic;
+        cout << "Enter your CNIC: ";
         cin >> nic;
 
+        
         for (int i = 0; i < users.size(); i++)
         {
             if (nic == users[i].cnic)
             {
-                cout << "\t\t USER VERIFIED, ENTRY GRANTED TO GIKI\n" << "================================\n"
-                << "\t\tWELCOME\n";
-                   time_t now = time(0);
-                users[i].tym = ctime(& now);
+                temp = i;
+                cout << "\t\t USER VERIFIED, ENTRY GRANTED TO GIKI\n"
+                     << "================================\n"
+                     << "\t\tWELCOME\n";
+                time_t now = time(0);
+                users[i].entry.push_back(now);
 
-                cout << "\tYou Entered Ghulam Ishaq Khan Institute at " << users[i].tym;  
-                //homesceen();
+                cout << "\tYou Entered Ghulam Ishaq Khan Institute at " << ctime(&users[i].entry.back());
+                return;
+
+                // homesceen();
             }
+        }
 
-            if (nic != users[i].cnic)
-            {
-                cout << "ENtry DENIED!!!\n" ; 
-                //homesceen();
-            }          
+        if (nic != users[temp].cnic)
+        {
+            cout << "ENtry DENIED!!!\n";
+            return;
+            // homesceen();
         }
     }
 
     void Exit()
     {
-        string nic; 
-        cout << "Enter your CNIC: "; 
-        cin >> nic;
+       // system("cls");
+        string anic;
+        cout << "Enter your CNIC: ";
+        cin >> anic;
 
         for (int i = 0; i < users.size(); i++)
         {
-            if (nic == users[i].cnic)
+            if (anic == users[i].cnic)
             {
-                cout << "\t\t USER VERIFIED, YOU CAN EXIT GIKI NOW\n" << "================================\n"
-                << "\t\tWELCOME\n";
-                //users[i].tym = time (0);
-                cout << "\tYou EXITED Ghulam Ishaq Khan Institute at " << time(0);  
-            }
-
-            else 
+                temp = i;
+                cout << "\t\t USER VERIFIED, YOU CAN EXIT GIKI NOW\n"
+                     << "================================\n"
+                     << "\t\tWELCOME\n";
+                time_t now = time(0);
+                users[i].exit.push_back(now);
+                cout << "\tYou EXITED Ghulam Ishaq Khan Institute at " << ctime(&users[i].exit.back());
+                return;
+            } 
+        }
+        if (anic != users[temp].cnic)
             {
                 cout << "Entry Invalid, Contact ADMIN";
                 return;
-            }                
-        }
+            }
     }
 };
